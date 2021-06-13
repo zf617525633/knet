@@ -101,6 +101,13 @@ In fact, both *connecting to server* and *accepting connection from client* are 
 
 ## Examples
 
+### Android Wrapper
+#### http
+#### https
+#### socket
+#### SSLSocket
+#### GMSocket
+
 ### Echo Server and Client
 
 [example](./examples/) provides [echo server](./examples/server) and [echo client](./examples/client).
