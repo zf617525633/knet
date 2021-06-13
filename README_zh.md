@@ -101,6 +101,13 @@ knet的核心概念是：`socket的生产-消费`。
 
 ## 示例程序
 
+### Android网络框架
+   #### http访问
+   #### https访问
+   #### socket访问
+   #### sslSocket访问
+   #### 国密Socket访问
+
 ### echo服务器和客户端
 
 [example目录](./examples/)下提供了使用knet实现的[echo服务器](./examples/server)和[echo客户端](./examples/client).
