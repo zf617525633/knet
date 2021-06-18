@@ -52,6 +52,7 @@ bool address::resolve_all(const std::string& node_name, const std::string& servi
         return false;
 
     for (auto rp = result; nullptr != rp; rp = rp->ai_next) {
+        //创建一个空的address并插入到队列的尾部
         addrs.emplace_back();
 
         auto& addr = addrs.back();

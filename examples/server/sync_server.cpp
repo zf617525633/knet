@@ -24,6 +24,7 @@ int main(int argc, char** argv)
     // parse ip address
     const auto ip = "";
     const auto fa = family_t::Ipv4;
+    //通过getaddrinfo 获取地址，并把地址复制到address中。
     address addr;
     if (!address::resolve_one(ip, port, fa, addr)) {
         std::cerr << "resolve address " << ip << ":" << port << " failed!" << std::endl;
@@ -34,8 +35,9 @@ int main(int argc, char** argv)
     secho_conn_factory cf;
     worker wkr(cf);
 
-    // create acceptor
+    // create acceptor，建立一个接收器
     acceptor acc(wkr);
+    //启动接收器
     if (!acc.start(addr)) {
         std::cerr << "acceptor::start failed" << std::endl;
         return -1;

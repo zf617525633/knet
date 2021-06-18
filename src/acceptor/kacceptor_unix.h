@@ -13,6 +13,7 @@ public:
     void update();
 
     bool start(const address& addr);
+
     void stop();
 
     bool on_pollevent(void* key, void* evt) override;
