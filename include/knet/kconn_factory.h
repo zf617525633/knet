@@ -27,6 +27,11 @@ private:
     connid_t _step;
 };
 
+/**
+ * 连接工厂，
+ * 负责创建连接----> conn
+ * 销毁连接以及加入定时器，删除定时器等操作
+ */
 class conn_factory {
 public:
     conn_factory();
