@@ -7,6 +7,7 @@ class poller_client {
 public:
     virtual ~poller_client() = default;
 
+    //回调，相当于事件就绪。
     virtual bool on_pollevent(void* key, void* evt) = 0;
 };
 

@@ -131,8 +131,7 @@ void close_rawsocket(rawsocket_t& rs)
     rs = INVALID_RAWSOCKET;
 }
 
-bool set_rawsocket_opt(rawsocket_t rs, int level, int optname,
-    const void* optval, socklen_t optlen)
+bool set_rawsocket_opt(rawsocket_t rs, int level, int optname,const void* optval, socklen_t optlen)
 {
     auto val = static_cast<const char*>(optval);
     return RAWSOCKET_ERROR != ::setsockopt(rs, level, optname, val, optlen);

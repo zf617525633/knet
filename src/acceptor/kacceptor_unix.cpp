@@ -34,10 +34,12 @@ bool acceptor::impl::start(const address& addr)
         return false;
     }
 
+    //建立一个指向poller的智能指针。
     _plr.reset(new poller(*this));
 
     const auto sa = addr.as_ptr<sockaddr>();
     const auto salen = addr.get_socklen();
+    //绑定，监听，并加入到监听中
     if (RAWSOCKET_ERROR == ::bind(_rs, sa, salen)
         || RAWSOCKET_ERROR == ::listen(_rs, SOMAXCONN)
         || !_plr->add(_rs, this)) {

@@ -4,6 +4,10 @@
 
 namespace knet {
 
+/**
+ * 接收器，impl为实际的实现类。
+ * 分为不同的实现版本，有unix,windows的两个版本
+ */
 class acceptor final {
 public:
     explicit acceptor(workable& wkr);
