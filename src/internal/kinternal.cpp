@@ -152,7 +152,11 @@ bool get_rawsocket_peeraddr(rawsocket_t rs, address& addr)
 }
 
 #ifndef _WIN32
-
+/**
+ * 设置非阻塞类型
+ * @param rs
+ * @return true 设置成功，false 设置失败
+ */
 bool set_rawsocket_nonblock(rawsocket_t rs)
 {
     int set = 1;

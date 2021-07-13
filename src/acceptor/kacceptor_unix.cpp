@@ -74,11 +74,13 @@ bool acceptor::impl::on_pollevent(void* key, void* evt)
     }
 #else
     while (true) {
+        //接受一个客户端套接字
         auto rs = ::accept(_rs, nullptr, 0);
         if (INVALID_RAWSOCKET == rs) {
+            //当阻塞于某个慢系统调用的一个进程捕获某个信号且相应信号处理函数返回时，该系统调用可能返回一个EINTR错误
             if (EINTR == errno)
                 continue;
-
+            //EAGAIN 提示你的应用程序现在没有数据可读请稍后再试。
             if (EAGAIN != errno)
                 kdebug("accept() failed!");
             break;

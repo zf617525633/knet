@@ -77,7 +77,7 @@ int main(int argc, char** argv)
 
         const auto end_ms = now_ms();
         const auto cost_ms = end_ms > beg_ms ? end_ms - beg_ms : 0;
-        constexpr int64_t min_interval_ms = 50;
+        constexpr int64_t min_interval_ms = 500;
         sleep_ms(cost_ms < min_interval_ms ? min_interval_ms - cost_ms : 1);
     }
 
