@@ -33,11 +33,13 @@ int main(int argc, char** argv)
 
     // create worker
     secho_conn_factory cf;
+    //worker 生产socket
     worker wkr(cf);
 
     // create acceptor，建立一个接收器
+    // 保留一份wkr的引用在接收器中
     acceptor acc(wkr);
-    //启动接收器
+    //启动接收器，并把socket文件描述符添加到wkr中进行监控
     if (!acc.start(addr)) {
         std::cerr << "acceptor::start failed" << std::endl;
         return -1;
@@ -77,7 +79,7 @@ int main(int argc, char** argv)
 
         const auto end_ms = now_ms();
         const auto cost_ms = end_ms > beg_ms ? end_ms - beg_ms : 0;
-        constexpr int64_t min_interval_ms = 500;
+        constexpr int64_t min_interval_ms = 3000;
         sleep_ms(cost_ms < min_interval_ms ? min_interval_ms - cost_ms : 1);
     }
 

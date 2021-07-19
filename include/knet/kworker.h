@@ -19,7 +19,9 @@ public:
     void add_work(rawsocket_t rs) override;
 
 private:
-    virtual void do_update() { }
+    virtual void do_update() {
+        // do nothing
+    }
 
 private:
     class impl;

@@ -76,6 +76,7 @@ class address;
 
 constexpr int IOCP_PENDING_ACCEPT_NUM = 64;
 constexpr int POLL_EVENT_NUM = 128;
+//数据缓冲区大小256K
 constexpr int SOCKET_RWBUF_SIZE = 256 * 1024;
 
 void on_fatal_error(int err, const char* apiname);

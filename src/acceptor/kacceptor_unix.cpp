@@ -17,6 +17,11 @@ void acceptor::impl::update()
     _plr->poll();
 }
 
+/***
+ * 绑定 监听，设置监听参数
+ * @param addr
+ * @return
+ */
 bool acceptor::impl::start(const address& addr)
 {
     if (INVALID_RAWSOCKET != _rs)
