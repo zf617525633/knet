@@ -38,6 +38,7 @@ int main(int argc, char** argv)
 
     // create acceptor，建立一个接收器
     // 保留一份wkr的引用在接收器中
+    //acceptor表示接收器，接受客户端的连接，当客户端连接之后，worker便可以生产socket
     acceptor acc(wkr);
     //启动接收器，并把socket文件描述符添加到wkr中进行监控
     if (!acc.start(addr)) {

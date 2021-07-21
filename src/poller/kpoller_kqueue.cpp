@@ -19,9 +19,12 @@ poller::impl::~impl()
 
 bool poller::impl::add(rawsocket_t rs, void* key)
 {
+    //创建kevent
     struct kevent ev[2];
+    //设置要监听的类型
     EV_SET(&ev[0], rs, EVFILT_READ, EV_ADD | EV_ENABLE | EV_CLEAR, 0, 0, key);
     EV_SET(&ev[1], rs, EVFILT_WRITE, EV_ADD | EV_ENABLE | EV_CLEAR, 0, 0, key);
+    //创建并且添加监听事件
     return 0 == ::kevent(_kq, ev, 2, nullptr, 0, nullptr)
         && 0 == (ev[0].flags & EV_ERROR)
         && 0 == (ev[1].flags & EV_ERROR);
