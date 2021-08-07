@@ -121,22 +121,26 @@ socket::impl::~impl()
     kassert(_f.is_close());
 }
 
+//初始化 unix socket
 bool socket::impl::init(poller& plr, conn_factory& cf)
 {
     if (INVALID_RAWSOCKET == _rs)
         return false;
 
+    // 连接描述符加入到监控中
     if (!plr.add(_rs, &_s)) {
         close_rawsocket(_rs);
         _f.mark_close();
         return false;
     }
 
+    //创建连接器
     _c = cf.create_conn();
 
+    //新建 发送缓存和接受缓存
     _rb.reset(new sockbuf());
     _wb.reset(new sockbuf());
-
+    //启动连接，就是把res
     if (!start()) {
         close_rawsocket(_rs);
         if (!_f.is_close())
@@ -234,6 +238,8 @@ bool socket::impl::handle_pollevent(void* evt)
     return ret;
 }
 
+//启动 socket ，就是把socket加入到
+//conn 连接器中
 bool socket::impl::start()
 {
     scoped_call_flag s(_f);

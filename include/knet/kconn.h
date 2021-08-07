@@ -11,6 +11,7 @@ constexpr timerid_t INVALID_TIMERID = 0;
 
 class conn_factory;
 class socket;
+//网络连接，作用是，连接回调，已经发送和接受数据
 class conn {
 public:
     explicit conn(conn_factory& cf);

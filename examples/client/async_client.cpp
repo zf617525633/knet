@@ -12,6 +12,7 @@ int main(int argc, char** argv)
     // parse command line
     const char* ip = argc > 1 ? argv[1] : "localhost";
     const char* port = argc > 2 ? argv[2] : "8888";
+    //客户端个数，默认1000个也可以自己输入个数
     const auto client_num = argc > 3 ? std::atoi(argv[3]) : 1000;
     const auto max_delay_ms = argc > 4 ? std::atoi(argv[4]) : 10;
     const auto thread_num = argc > 5 ? std::atoi(argv[5]) : 16;
@@ -69,7 +70,7 @@ int main(int argc, char** argv)
 
         const auto end_ms = now_ms();
         const auto cost_ms = end_ms > beg_ms ? end_ms - beg_ms : 0;
-        constexpr int64_t min_interval_ms = 50;
+        constexpr int64_t min_interval_ms = 5000;
         sleep_ms(cost_ms < min_interval_ms ? min_interval_ms - cost_ms : 1);
     }
 

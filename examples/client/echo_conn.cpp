@@ -126,6 +126,7 @@ void cecho_conn::generate_packages()
     }
 }
 
+//发送数据包
 bool cecho_conn::send_package()
 {
     if (_send_buf_size == _used_buf_size)

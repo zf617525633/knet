@@ -64,6 +64,14 @@ bool address::resolve_all(const std::string& node_name, const std::string& servi
     return true;
 }
 
+/**
+ * 转化IP地址为address类型
+ * @param node_name  ip地址
+ * @param service_name 端口号
+ * @param fa IPV4 or IPV6
+ * @param addr 解析完成的地址
+ * @return true解析成功，false解析失败。
+ */
 bool address::resolve_one(const std::string& node_name, const std::string& service_name,
     family_t fa, address& addr)
 {
@@ -86,6 +94,7 @@ bool address::resolve_one(const std::string& node_name, const std::string& servi
         return false;
     }
 
+    //如果节点地址（ip或者域名）为空，则算是绑定模式bind()可以获取ip
     const char* nn = node_name.c_str();
     if (node_name.empty()) {
         nn = nullptr;

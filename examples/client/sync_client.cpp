@@ -3,7 +3,7 @@
 #include <knet/kconnector.h>
 #include <knet/kworker.h>
 #include <knet/kutils.h>
-
+//同步调用
 int main(int argc, char** argv)
 {
     std::ios::sync_with_stdio(false);
@@ -25,6 +25,7 @@ int main(int argc, char** argv)
     // parse ip address
     const auto fa = family_t::Ipv4;
     address addr;
+    //此处的ip和port为服务端的ip和port，只有连接之后才能知道自己的ip和port
     if (!address::resolve_one(ip, port, fa, addr)) {
         std::cerr << "resolve address " << ip << ":" << port << " failed!" << std::endl;
         return -1;
@@ -35,11 +36,13 @@ int main(int argc, char** argv)
     worker wkr(cf);
 
     // create connector
+    // 主要工作就是创建连接，并开始连接
     connector cnctor(wkr);
 
     // check console input
     auto& mgr = echo_mgr::get_instance();
     mgr.set_is_server(false);
+    //检查命令行输入
     mgr.check_console_input();
     mgr.set_max_delay_ms(max_delay_ms);
     mgr.set_enable_log(true);

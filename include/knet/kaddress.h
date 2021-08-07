@@ -32,6 +32,7 @@ public:
     template <typename T>
     const T* as_ptr() const
     {
+        //强制把char数组转换成自己想要的类型
         static_assert(sizeof(_addr) >= sizeof(T), "invalid address type size");
         return reinterpret_cast<const T*>(_addr);
     }
@@ -42,6 +43,7 @@ public:
     std::string to_string() const;
 
 private:
+    //直接用一个char数组来保存地址
     char _addr[256] = {};
 };
 

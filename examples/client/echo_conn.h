@@ -3,7 +3,7 @@
 #include "../echo_mgr.h"
 
 using namespace knet;
-
+//客户端服务端 echo，连接器，接受数据，发送数据打印数据
 class cecho_conn : public conn {
 public:
     explicit cecho_conn(conn_factory& cf);

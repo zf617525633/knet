@@ -16,8 +16,11 @@ public:
     void add_work(rawsocket_t rs)
     {
         std::unique_ptr<socket> s(new socket(rs));
-        if (s->init(*_plr, _cf))
+        //初始化之后释放对socket的控制权
+        if (s->init(*_plr, _cf)){
             s.release();
+        }
+
     }
     void update()
     {
