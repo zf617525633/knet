@@ -35,6 +35,8 @@ bool connector::connect(const address& addr)
     }
 #endif
     //连接成功就加入到poll中监控，poll在不同的系统中具体实现不同
+    //连接的时候把socket初始化，并且加入到监控中
+    //如果是移步的socket则是加入到队列中
     _wkr.add_work(rs);
     return true;
 }

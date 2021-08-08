@@ -40,6 +40,7 @@ void cecho_conn::do_on_connected()
     }
 
     // for test purpose, direct disconnect
+    //如果随机到一个0，就断开连接
     if (0 == u32rand_between(0, 499)) {
         std::cerr << "direct disconnect at on_connected" << std::endl;
         disconnect();

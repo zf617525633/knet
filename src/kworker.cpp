@@ -4,7 +4,7 @@
 #include "internal/ksocket.h"
 
 namespace knet {
-
+//同步工作者
 class worker::impl : public poller_client {
 public:
     explicit impl(conn_factory& cf)
@@ -15,6 +15,7 @@ public:
 
     void add_work(rawsocket_t rs)
     {
+        //使用连接描述符创建socket并且初始化socket
         std::unique_ptr<socket> s(new socket(rs));
         //初始化之后释放对socket的控制权
         if (s->init(*_plr, _cf)){

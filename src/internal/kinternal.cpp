@@ -37,6 +37,7 @@ void on_fatal_error(int err, const char* apiname)
     abort();
 }
 
+//设置发送和接受数据缓存
 bool set_rawsocket_bufsize(rawsocket_t rs, size_t size)
 {
     auto s = static_cast<int>(size);
@@ -169,6 +170,7 @@ bool set_rawsocket_nonblock(rawsocket_t rs)
     return 0 == ret;
 }
 
+//exec()被系统调用时自动关闭文件描述符
 bool set_rawsocket_cloexec(rawsocket_t rs)
 {
     int ret = 0;

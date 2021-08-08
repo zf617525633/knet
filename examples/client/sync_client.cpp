@@ -37,6 +37,7 @@ int main(int argc, char** argv)
 
     // create connector
     // 主要工作就是创建连接，并开始连接
+    //然后加入worker到连接器中，真正干活的是worker
     connector cnctor(wkr);
 
     // check console input
@@ -53,6 +54,8 @@ int main(int argc, char** argv)
         const auto delta_ms = (beg_ms > last_ms ? beg_ms - last_ms : 0);
         last_ms = beg_ms;
 
+        //这个worker就是刚刚传入到connector中的worker
+        //此时worker开始不间断的干活
         wkr.update();
 
         const auto conn_num = mgr.get_conn_num();
